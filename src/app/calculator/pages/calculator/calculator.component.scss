@@ -1,0 +1,50 @@
+.sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &_sidenav {
+    width: 600px;
+
+    &__close {
+      right: 0;
+      position: absolute;
+      margin-right: 25px;
+    }
+  }
+
+  &_content {
+
+    .application-wrapper {
+      padding: 25px;
+
+      &_content {
+        display: flex;
+
+        .loan-form  {
+          margin: 25px;
+        }
+
+        &_item {
+          flex: 1;
+          margin: 25px;
+
+          .loan-form-field {
+            display: block;
+
+            .slider {
+              display: block;
+            }
+
+            .slider-hint {
+              display: block;
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}

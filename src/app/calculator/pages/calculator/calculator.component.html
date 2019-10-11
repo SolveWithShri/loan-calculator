@@ -1,0 +1,51 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #sidenav mode="over" class="sidenav-container_sidenav">
+    <button mat-button class="sidenav-container_sidenav__close" (click)="sidenav.toggle()">Close</button>
+    <ng-container
+      *ngIf="loanDetailsRequestCacheService.interestCalculationRequests.length > 0; then showLoanDetailsRequest; else noDataFoundTemplateRef">
+    </ng-container>
+    <ng-template #showLoanDetailsRequest>
+      <ng-container
+        *ngFor="let interestCalculationRequest of loanDetailsRequestCacheService.interestCalculationRequests">
+        <app-loan-details-request-card [interestCalculationRequest]="interestCalculationRequest"
+          (click)="getLoanDetails(interestCalculationRequest)">
+        </app-loan-details-request-card>
+      </ng-container>
+    </ng-template>
+    <ng-template #noDataFoundTemplateRef>
+      No Data Found
+    </ng-template>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-container_content">
+    <main class="application-wrapper">
+      <button mat-button (click)="sidenav.toggle()">Open old searches</button>
+      <div class="application-wrapper_content">
+          <mat-card class="application-wrapper_content_item loan-form-card">
+              <mat-card-header>
+                <mat-card-title>Interest rate and monthly payment calculator</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <form class="loan-form" [formGroup]="loanForm">
+                  <mat-form-field class="loan-form-field">
+                    <input matInput formControlName="loanAmount" placeholder="Loan Amount">
+                    <mat-hint align="end">The loan amount should be between ${{loanAmountMin}} and ${{loanAmountMax}}
+                    </mat-hint>
+                  </mat-form-field>
+                  <br />
+                  <div class="loan-form-field">
+                    <mat-slider class="slider" [max]="loanDurationInMonthsMax" [min]="loanDurationInMonthsMin"
+                      [step]="loanDurationInMonthsStep" [thumbLabel]="true" [tickInterval]="loanDurationInMonthsStep"
+                      formControlName="loanDurationInMonths">
+                    </mat-slider>
+                    <mat-hint class="slider-hint" align="end">Loan duration between {{loanDurationInMonthsMin}} and {{loanDurationInMonthsMax}}
+                      months.</mat-hint>
+                  </div>
+                </form>
+              </mat-card-content>
+            </mat-card>
+            <app-loan-details-card class="application-wrapper_content_item" [interestRateAndMonthlyPayment]="interestRateAndMonthlyPayment"></app-loan-details-card>
+      </div>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

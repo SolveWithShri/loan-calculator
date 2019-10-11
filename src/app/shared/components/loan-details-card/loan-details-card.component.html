@@ -1,0 +1,21 @@
+<mat-card class="loan-details-card">
+  <mat-card-header>
+    <mat-card-title>Calculated interest rate and monthly payment</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <label>
+      Interest rate :
+    </label>
+    <label>
+      {{interestRateAndMonthlyPayment?.interestRate}}
+    </label>
+    <br />
+    <label>
+      Monthly payment :
+    </label>
+    <label>
+      {{interestRateAndMonthlyPayment?.monthlyPayment?.amount}}
+      {{interestRateAndMonthlyPayment?.monthlyPayment?.currency}}
+    </label>
+  </mat-card-content>
+</mat-card>
